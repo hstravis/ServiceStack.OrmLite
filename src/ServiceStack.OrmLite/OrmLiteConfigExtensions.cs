@@ -44,8 +44,6 @@ namespace ServiceStack.OrmLite
             typeModelDefinitionMap = new Dictionary<Type, ModelDefinition>();
         }
         
-        public static Action<ModelDefinition> InitModelDefinitionCallback { get; set; }
-        
         internal static ModelDefinition GetModelDefinition(this Type modelType)
         {
             ModelDefinition modelDef;
@@ -205,9 +203,6 @@ namespace ServiceStack.OrmLite
 
             LicenseUtils.AssertValidUsage(LicenseFeature.OrmLite, QuotaType.Tables, typeModelDefinitionMap.Count);
             
-            if (InitModelDefinitionCallback != null)
-                InitModelDefinitionCallback(modelDef);
-
             return modelDef;
         }
 
